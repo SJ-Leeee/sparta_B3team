@@ -2,159 +2,132 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet" />
+  <title>스파르타코딩클럽 Team B3</title>
 
-    <title>선착순 공동구매</title>
 
-    <style>
-        * {
-            font-family: "Gowun Batang", serif;
-            color: white;
-        }
 
-        body {
-            background-image: linear-gradient(0deg,
-                    rgba(0, 0, 0, 0.5),
-                    rgba(0, 0, 0, 0.5)),
-                url("https://cdn.aitimes.com/news/photo/202010/132592_129694_3139.jpg");
-            background-position: center;
-            background-size: cover;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Noto+Sans+KR:wght@500&display=swap"
+    rel="stylesheet">
 
-        h1 {
-            font-weight: bold;
-        }
+  <style>
+    * {
+      font-family: 'Montserrat', sans-serif;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
 
-        .order {
-            width: 500px;
-            margin: 60px auto 0px auto;
-            padding-bottom: 60px;
-        }
+    .mytitle {
+      width: 500px;
+      margin: 60px auto 0px auto;
+      padding-bottom: 60px;
+      color: green;
+    }
 
-        .mybtn {
-            width: 100%;
-        }
+    body {
+      background-color: cornsilk;
+      background-position: center;
+      background-size: cover;
+    }
 
-        .order>table {
-            margin: 40px 0;
-            font-size: 18px;
-            white-space: nowrap;
-        }
 
-        option {
-            color: black;
-        }
-    </style>
-    <script>
-        $(document).ready(function () {
-            show_order();
-        });
-        function show_order() {
-            fetch('/members').then((res) => res.json()).then((data) => {
-                let rows = data['result']
-                $('#order-box').empty()
-                rows.forEach((a) => {
-                    let name = a.name
-                    let mbti = a.mbti
-                    let motive = a.motive
-                    let blog = a.blog
-                    let github = a.github
+    .header {
+      width: 1000px;
+      text-align: center;
+      margin: auto;
+      padding: 30px 100px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
 
-                    let temp_html = `<tr>
-                                    <td>${name}</td>
-                                    <td>${mbti}</td>
-                                    <td>${motive}</td>
-                                    <td>${blog}</td>
-                                    <td>${github}</td>
-                                </tr>`
+    .header>div {
+      width: 1000px;
+      font-size: 20px;
+      font-weight: 700;
+      background-color: whitesmoke;
+      opacity: 0.8;
+    }
 
-                    $('#order-box').append(temp_html)
-                })
+    .menu {
+      max-width: 1000px;
+      margin: auto;
+      padding-top: 20px;
+      display: flex;
+      justify-content: space-around;
+      background-color: whitesmoke;
+    }
 
-            })
-        }
-        function save_order() {
-            let name = $('#name').val()
-            let mbti = $('#mbti').val()
-            let motive = $('#motive').val()
-            let blog = $('#blog').val()
-            let github = $('#github').val()
+    .menu>div {
+      width: 120px;
+      border: solid;
+      border-radius: 5px;
+      padding: 10px;
+      text-align: center;
+    }
 
-            let formData = new FormData();
-            formData.append("name_give", name);
-            formData.append("mbti_give", mbti);
-            formData.append("motive_give", motive);
-            formData.append("blog_give", blog);
-            formData.append("github_give", github);
+    .team-details {
+      max-width: 800px;
+      margin: auto;
+      padding: 100px;
+      display: flex;
+      justify-content: space-around;
 
-            fetch('/members', { method: "POST", body: formData }).then((res) => res.json()).then((data) => {
-                alert(data["msg"]);
-            });
-        }
-    </script>
+    }
+    .member {
+      max-width: 1000px;
+      margin: auto;
+      background-color: whitesmoke;
+      padding: 100px;
+      display: flex;
+      justify-content: space-around;
+    }
+  </style>
+  <script>
+
+  </script>
 </head>
 
 <body>
-    <div class="mask"></div>
-    <div class="order">
-        <h1>팀원 등록 페이지</h1>
-        <div class="order-info">
-            <div class="input-group mb-3">
-                <span class="input-group-text">이름</span>
-                <input id="name" type="text" class="form-control" />
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">mbti</span>
-                <input id="mbti" type="text" class="form-control" />
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">motive</span>
-                <input id="motive" type="text" class="form-control" />
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">blog</span>
-                <input id="blog" type="text" class="form-control" />
-            </div>
-            <div class="input-group mb-3">
-                <span class="input-group-text">github</span>
-                <input id="github" type="text" class="form-control" />
-            </div>
-            <button onclick="save_order()" type="button" class="btn btn-warning mybtn">
-                등록하기
-            </button>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">이 름</th>
-                    <th scope="col">mbti</th>
-                    <th scope="col">motive</th>
-                    <th scope="col">blog</th>
-                    <th scope="col">github</th>
-                </tr>
-            </thead>
-            <tbody id="order-box">
-                <tr>
-                    <td>홍길동</td>
-                    <td>서울시 용산구</td>
-                    <td>20222222222222222평</td>
-                    <td>2022222222222222평</td>
-                    <td>20평</td>
-                </tr>
-            </tbody>
-        </table>
+  <div class="header">
+    <div>
+      <h1>Team B3</h1>
+      <p>Become 3% of Backend</p>
     </div>
+  </div>
+    <div class="menu">
+      <button type="button" onclick="location.href='/';" class="btn btn-warning mybtn">
+        Team B3
+      </button>
+      <button type="button" onclick="location.href='/team';" class="btn btn-warning mybtn">
+        팀원 소개
+      </button>
+      <button type="button" onclick="location.href='/team';" class="btn btn-warning mybtn">
+        팀원 등록
+      </button>
+    </div>
+    <div class="member">
+      <div class="card mb-3">
+        <img src="https://i.pinimg.com/564x/08/4e/03/084e03a6fc28c822ffcacfd7f4e792f5.jpg" class="card-img-top" alt="https://i.pinimg.com/564x/08/4e/03/084e03a6fc28c822ffcacfd7f4e792f5.jpg">
+        <div class="card-body">
+          <h5 class="card-title">B반 3조</h5>
+          <p class="card-text">백엔드 개발자 3% 이내로 들자</p>
+          <p class="card-text"><small class="text-body-secondary">메인페이지 입니다.</small></p>
+        </div>
+      </div>
+    </div>
+
+
+
 </body>
 
 </html>
