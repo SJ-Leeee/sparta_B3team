@@ -88,11 +88,24 @@
 
     .member {
       max-width: 1000px;
-      margin:auto;
+      margin: 0 auto;
       padding-top: 50px;
       padding-bottom: 200px;
       background-color: gainsboro;
       display: flex;
+    }
+
+    .parent {
+      width: 600px;
+      overflow: hidden;
+    }
+
+    .child {
+      background-color: gold;
+      width: 200px;
+      height: 300px;
+      margin: auto;
+      float: left;
     }
   </style>
   <script>
@@ -148,26 +161,31 @@
     </button>
   </div>
   <div class="member">
-    <div class="card" style="width: 40rem; margin: 0 auto;">
-      <img src="https://i.pinimg.com/564x/d2/37/81/d2378191b5d2083807e4617d37647215.jpg" class="card-img-top" alt="" height="700px">
+    <div class="card" style="width: 30rem; margin:100px 0 0 130px;">
+      <img src="https://i.pinimg.com/564x/a0/29/2e/a0292ed714e1ae5e85d9f6aebbb8ccfa.jpg" class="card-img-top" alt=""
+        height="400px">
       <div class="card-body">
         <h5 class="card-title">회원 등록</h5>
         <p class="card-text">Team B3 입니다. 반갑습니다</p>
       </div>
-      <ul class="list-group list-group-flush">
-        <input type="text" class="form-control" id="member" placeholder="1. 이름" />
-        <input type="text" class="form-control" id="mbti" placeholder="2. MBTI" />
-        <input type="text" class="form-control" id="motive" placeholder="3. 지원동기 및 각오" />
-        <input type="text" class="form-control" id="blog" placeholder="4. http://블로그 주소" />
-        <input type="text" class="form-control" id="github" placeholder="5. http://깃허브 주소" />
-        <input type="text" class="form-control" id="memberId" placeholder="6. memberId " />
-      </ul>
-      <div style="margin:0 auto;">
-        <button type="button" onclick="save_member()" class="btn btn-warning mybtn">
-          등록하기
-        </button>
-      </div>
     </div>
+    <div class="card" style="width: 18rem; float: left; margin-top: 100px;">
+      <div class="card-header">
+        회원 정보
+      </div>
+      <ul class="list-group list-group-flush" style="float: left; ">
+        <input type="text" class="form-control" id="member" placeholder="이름" />
+        <input type="text" class="form-control" id="mbti" placeholder="MBTI" />
+        <input type="text" class="form-control" id="motive" placeholder="지원동기 및 각오" />
+        <input type="text" class="form-control" id="blog" placeholder="http://블로그 주소" />
+        <input type="text" class="form-control" id="github" placeholder="http://깃허브 주소" />
+        <input type="text" class="form-control" id="memberId" placeholder="memberId" />
+      </ul>
+      <button type="button" onclick="save_member()" class="btn btn-warning mybtn">
+        등록하기
+      </button>
+    </div>
+  </div>
   </div>
 
 </body>
